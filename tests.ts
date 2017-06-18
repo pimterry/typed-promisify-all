@@ -1,4 +1,7 @@
-import { expect } from 'chai';
+import * as chai from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
+chai.use(chaiAsPromised);
+const { expect, AssertionError } = chai;
 
 import { promisify } from '.';
 
@@ -8,8 +11,6 @@ describe("promisify", () => {
 
         const promisified = promisify(callbackWithoutParams);
 
-        return promisified().then((result: any) => {
-            expect(result).to.be.undefined;
-        });
+        return expect(promisified()).to.eventually.equal(undefined);
     });
 });
