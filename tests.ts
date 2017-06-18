@@ -31,4 +31,28 @@ describe("promisify", () => {
 
         return expect(promisified()).to.eventually.be.rejectedWith(thrownError);
     });
+
+    it("should pass through one param", () => {
+        const callbackWithParam = (param: any, callback: () => void) => {
+            expect(param).not.to.be.undefined;
+            callback();
+        };
+
+        const promisified = promisify(callbackWithParam);
+
+        return expect(promisified("hello")).not.to.be.rejected;
+    });
+
+    it("should pass through three params", () => {
+        const callbackWithParam = (param1: any, param2: any, param3: any, callback: () => void) => {
+            expect(param1).to.equal(1);
+            expect(param2).to.equal(2);
+            expect(param3).to.equal(3);
+            callback();
+        };
+
+        const promisified = promisify(callbackWithParam);
+
+        return expect(promisified(1, 2, 3)).not.to.be.rejected;
+    });
 });
