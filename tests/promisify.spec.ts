@@ -3,7 +3,7 @@ import * as chaiAsPromised from 'chai-as-promised';
 chai.use(chaiAsPromised);
 const { expect, AssertionError } = chai;
 
-import { promisify } from '.';
+import { promisify } from '..';
 
 describe("promisify", () => {
     it("should promisify a function without params", () => {
