@@ -1,0 +1,43 @@
+{
+  "name": "typed-promisify-all",
+  "version": "0.1.0",
+  "description": "A TypeScript type-safe promisify & promisifyAll implementations",
+  "main": "index.js",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && mocha --compilers ts:ts-node/register tests.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pimterry/typed-promisify-all.git"
+  },
+  "keywords": [
+    "typescript",
+    "types",
+    "typed",
+    "promise",
+    "promises",
+    "promisify",
+    "promisifyAll",
+    "bluebird"
+  ],
+  "author": "Tim Perry <pimterry@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pimterry/typed-promisify-all/issues"
+  },
+  "homepage": "https://github.com/pimterry/typed-promisify-all#readme",
+  "devDependencies": {
+    "ts-node": "^3.0.6",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^2.2.41",
+    "any-promise": "^1.3.0",
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.0.0",
+    "mocha": "^3.4.2"
+  }
+}
