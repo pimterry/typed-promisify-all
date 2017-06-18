@@ -2,12 +2,10 @@ import { expect } from 'chai';
 
 import { promisify } from '.';
 
-const callbackWithoutParams = (callback: () => void) => {
-    callback();
-};
-
 describe("promisify", () => {
     it("should promisify a function without params", () => {
+        const callbackWithoutParams = (callback: () => void) => callback();
+
         const promisified = promisify(callbackWithoutParams);
 
         return promisified().then((result: any) => {
