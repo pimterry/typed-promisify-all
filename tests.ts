@@ -13,4 +13,22 @@ describe("promisify", () => {
 
         return expect(promisified()).to.eventually.equal(undefined);
     });
+
+    it("should promisify a function that calls back with an error", () => {
+        const thrownError = new Error();
+        const callbackWithError = (callback: (err: Error) => void) => callback(thrownError);
+
+        const promisified = promisify(callbackWithError);
+
+        return expect(promisified()).to.eventually.be.rejectedWith(thrownError);
+    });
+
+    it("should promisify a function that throws a synchronous error", () => {
+        const thrownError = new Error();
+        const callbackWithError = (callback: (err: Error) => void) => { throw thrownError; };
+
+        const promisified = promisify(callbackWithError);
+
+        return expect(promisified()).to.eventually.be.rejectedWith(thrownError);
+    });
 });

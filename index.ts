@@ -7,5 +7,17 @@ export function promisify<T, A1, A2, A3>(func: (arg1: A1, arg2: A2, arg3: A3, ca
 export function promisify<T, A1, A2, A3, A4>(func: (arg1: A1, arg2: A2, arg3: A3, arg4: A4, callback: (err: any, result: T) => void) => void): (arg1: A1, arg2: A2, arg3: A3, arg4: A4) => Promise<T>;
 export function promisify<T, A1, A2, A3, A4, A5>(func: (arg1: A1, arg2: A2, arg3: A3, arg4: A4, arg5: A5, callback: (err: any, result: T) => void) => void): (arg1: A1, arg2: A2, arg3: A3, arg4: A4, arg5: A5) => Promise<T>;
 export function promisify(f: Function): Function {
-    return () => Promise.resolve();
+    return function promisifyWrapper() {
+        let args = [].slice.call(arguments);
+        return new Promise((resolve, reject) => {
+            args.push(function callback(err: any, data: any) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(data);
+                }
+            });
+            f.apply(this, args);
+        });
+    }
 }
