@@ -55,4 +55,17 @@ describe("promisify", () => {
 
         return expect(promisified(1, 2, 3)).not.to.be.rejected;
     });
+
+    it("should correctly type and return the promise return value", () => {
+        const callbackWithReturnType = (callback: (err: any, data: number) => void) => {
+            callback(null, 123);
+        };
+
+        const promisified = promisify(callbackWithReturnType);
+
+        return promisified().then((result) => {
+            let x: number = result; // This won't compile if result is not correctly inferred
+            expect(x).to.equal(123);
+        });
+    });
 });
