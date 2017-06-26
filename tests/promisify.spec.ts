@@ -62,4 +62,10 @@ describe("promisify", () => {
             () => require('./param.broken')
         ).to.throw(TSError, /Argument of type \'"hello"\' is not assignable to parameter of type \'number\'/);
     });
+
+    it("should correctly catch a wrongly typed promise resolution value", () => {
+        expect(
+            () => require('./return.broken')
+        ).to.throw(TSError, /Type 'number' is not assignable to type 'string'/);
+    });
 });
