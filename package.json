@@ -6,7 +6,7 @@
   "types": "index.ts",
   "scripts": {
     "build": "tsc",
-    "test": "npm run build && mocha --compilers ts:ts-node/register tests/*.spec.ts"
+    "test": "npm run build && mocha --compilers ts:./tests/test-compiler.js tests/*.spec.ts"
   },
   "repository": {
     "type": "git",
