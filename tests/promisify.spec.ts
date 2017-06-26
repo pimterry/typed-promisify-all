@@ -63,9 +63,15 @@ describe("promisify", () => {
         ).to.throw(TSError, /Argument of type \'"hello"\' is not assignable to parameter of type \'number\'/);
     });
 
-    it("should correctly catch a wrongly typed promise resolution value", () => {
+    it("should correctly catch a wrongly used promise result", () => {
         expect(
-            () => require('./return.broken')
+            () => require('./wrongly-used.broken')
+        ).to.throw(TSError, /Type 'number' is not assignable to type 'string'/);
+    });
+
+    it("should correctly catch a wrongly typed promise result", () => {
+        expect(
+            () => require('./wrongly-typed.broken')
         ).to.throw(TSError, /Type 'number' is not assignable to type 'string'/);
     });
 });

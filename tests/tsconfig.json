@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
-        "module": "umd",
-        "moduleResolution": "node",
+        "module": "commonjs",
         "target": "es5",
         "noImplicitAny": true,
         "preserveConstEnums": true,
