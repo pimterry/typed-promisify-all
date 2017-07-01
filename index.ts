@@ -35,6 +35,7 @@ export function promisify<A1, A2, A3, A4, R>(func: FourParamFunction<A1, A2, A3,
 export function promisify<A1, A2, A3, A4, T>(func: FourParamCbFunction<A1, A2, A3, A4, T>): (arg1: A1, arg2: A2, arg3: A3, arg4: A4) => Promise<T>;
 export function promisify<A1, A2, A3, A4, A5, R>(func: FiveParamFunction<A1, A2, A3, A4, A5, R>): (arg1: A1, arg2: A2, arg3: A3, arg4: A4, arg5: A5) => never;
 export function promisify<A1, A2, A3, A4, A5, T>(func: FiveParamCbFunction<A1, A2, A3, A4, A5, T>): (arg1: A1, arg2: A2, arg3: A3, arg4: A4, arg5: A5) => Promise<T>;
+export function promisify(f: Function): AnyFunction<any, Promise<any> | never>;
 export function promisify(f: Function): AnyFunction<any, Promise<any> | never> {
     return function promisifyWrapper() {
         let args = [].slice.call(arguments);
