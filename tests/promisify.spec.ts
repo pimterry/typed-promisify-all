@@ -1,16 +1,5 @@
-import { TSError } from 'ts-node';
-import * as chai from 'chai';
-import * as chaiAsPromised from 'chai-as-promised';
-chai.use(chaiAsPromised);
-const { expect, AssertionError } = chai;
-
+import { expect, expectCompilationFailure } from './helpers';
 import { promisify } from '..';
-
-function expectCompilationFailure(name: string, errorMatcher: RegExp) {
-    expect(
-        () => require('./broken-examples/' + name)
-    ).to.throw(TSError, errorMatcher);
-}
 
 describe("promisify", () => {
     it("should promisify a function without params", () => {
