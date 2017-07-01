@@ -83,5 +83,18 @@ describe("promisify", () => {
             /Type 'number' is not assignable to type 'string'/
         );
     });
+
+    it("should correctly catch promisify used on function that expects no args", () => {
+        expectCompilationFailure(
+            'non-callback.no-args',
+            /Property 'then' does not exist on type 'never'./
+        );
+    });
+
+    it("should correctly catch promisify used on function that expects one non-callback arg", () => {
+        expectCompilationFailure(
+            'non-callback.one-arg',
+             /Property 'then' does not exist on type 'never'./
+        );
     });
 });

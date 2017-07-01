@@ -4,6 +4,7 @@
         "target": "es5",
         "noImplicitAny": true,
         "preserveConstEnums": true,
+        "strict": true,
         "pretty": true,
         "sourceMap": true
     },
