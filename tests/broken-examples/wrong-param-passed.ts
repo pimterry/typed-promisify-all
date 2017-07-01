@@ -1,4 +1,4 @@
-import { promisify } from '..';
+import { promisify } from '../..';
 
 const callbackWithParam = (param: number, callback: () => void) => { };
 
